@@ -18,8 +18,8 @@ jobs:
       - name: Drop cums
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
             cd ~my-project
