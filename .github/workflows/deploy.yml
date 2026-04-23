@@ -22,6 +22,6 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            cd ~my-project
+            cd ~/voitformation
             git pull origin main
             docker compose up -d --build
