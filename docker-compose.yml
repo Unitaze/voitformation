@@ -8,7 +8,26 @@ services:
     # Но мы НЕ открываем его для всего интернета, он виден только для Nginx
     expose:
       - "8000"
+    depends_on:
+      db:
+        condition: service_healty
     # Если приложение упадет (например, ошибка в коде), Docker сам его поднимет
+    restart: always
+
+  db:
+    image: mysql:8.0
+    enviroment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: visits_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user_password
+    volumes:
+      - db_data:/var/lib/mysql
+
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 5s
+      retries: 10
     restart: always
 
   # 2. Наш второй сервис — Nginx
@@ -26,3 +45,7 @@ services:
     depends_on:
       - python_app
     restart: always
+
+
+volumes:
+  db_data:
