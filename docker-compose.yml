@@ -15,7 +15,7 @@ services:
 
   db:
     image: mysql:8.0
-    enviroment:
+    environment:
       MYSQL_ROOT_PASSWORD: root_password
       MYSQL_DATABASE: visits_db
       MYSQL_USER: user
