@@ -9,8 +9,7 @@ services:
     expose:
       - "8000"
     depends_on:
-      db:
-        condition: service_healty
+      - db
     # Если приложение упадет (например, ошибка в коде), Docker сам его поднимет
     restart: always
 
